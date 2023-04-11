@@ -22,8 +22,9 @@ class ProductManager {
   };
 
   getProductById = (idProduct) => {
-    if (this.products.find((Product) => Product.Id === idProduct)) {
-      return this.product;
+    let findProduct = this.products.find((product) => product.id == idProduct);
+    if (findProduct) {
+      return findProduct;
     } else {
       return console.log("not found");
     }
@@ -62,5 +63,8 @@ productManager.addProduct(
   "3",
   "https://www.google.com/url?sa=i&url=https%3A%2F%2Flistado.mercadolibre.com.ar%2Fpantalon-azul-hombre&psig=AOvVaw1lEjecn9CoZ3Qo3WhVkv6i&ust=1681171523744000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCPwo2Cnv4CFQAAAAAdAAAAABAE"
 );
+
+/* Arrays completo de productos */
 console.log(productManager.getProducts());
-console.log(productManager.getProductById());
+/* Filtro de id */
+console.log(productManager.getProductById(4));
