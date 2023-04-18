@@ -7,6 +7,7 @@ class ProductManager {
   addProduct(Producto, Descripcion, Precio, Stock, Img) {
     const Product = {
       id: this.#nuevoId() + 1,
+      code: this.#nuevoCode() + 1,
       Producto,
       Descripcion,
       Precio,
@@ -38,6 +39,14 @@ class ProductManager {
     return maxId;
   }
   id;
+
+  #nuevoCode() {
+    let maxCode = 0;
+    this.products.map((Product) => {
+      if (Product.code > maxCode) maxCode = Product.code;
+    });
+    return maxCode;
+  }
 }
 
 const productManager = new ProductManager();
@@ -64,7 +73,15 @@ productManager.addProduct(
   "https://www.google.com/url?sa=i&url=https%3A%2F%2Flistado.mercadolibre.com.ar%2Fpantalon-azul-hombre&psig=AOvVaw1lEjecn9CoZ3Qo3WhVkv6i&ust=1681171523744000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCPwo2Cnv4CFQAAAAAdAAAAABAE"
 );
 
-/* Arrays completo de productos */
-console.log(productManager.getProducts());
+/* Arrays completo de productos*/
+// console.log(productManager.getProducts());
 /* Filtro de id */
-console.log(productManager.getProductById(4));
+// console.log(productManager.getProductById(3));
+
+// FileSystem
+const fs = require("fs");
+const path = "./fileJSON.json";
+fs.writeFileSync(path, JSON.stringify(productManager.getProducts()));
+const info = fs.readFileSync(path, "utf-8");
+const infoJS = JSON.parse(info);
+const filtroID = console.log(productManager.getProducts());
