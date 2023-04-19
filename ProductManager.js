@@ -5,6 +5,8 @@ class ProductManager {
     this.path = "./Productos.json";
   }
 
+
+  // crea el producto
   async createProds(products) {
     try {
       const productsFile = await this.addProducts();
@@ -28,6 +30,36 @@ class ProductManager {
       console.error(error);
     }
   }
+
+  getProductById = (idProduct) => {
+    let findProduct = this.products.find((product) => product.id == idProduct);
+    if (findProduct) {
+      return findProduct;
+    } else {
+      return console.log("not found");
+    }
+  };
+
+  #nuevoId() {
+    let maxId = 0;
+    this.products.map((Product) => {
+      if (Product.id > maxId) maxId = Product.id;
+    });
+    return maxId;
+  }
+  id;
+
+  #nuevoCode() {
+    let maxCode = 0;
+    this.products.map((Product) => {
+      if (Product.code > maxCode) maxCode = Product.code;
+    });
+    return maxCode;
+  }
+
+
+
+
 }
 
 const producto = new ProductManager();
