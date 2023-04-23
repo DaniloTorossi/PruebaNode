@@ -1,0 +1,14 @@
+{
+  "name": "nueva-carpeta",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ProductManager.js",
+  "type": "module",
+  "scripts": {
+    "start:http": "nodemon server-http.js",
+    "start:express": "nodemon server-express.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
