@@ -200,15 +200,15 @@ const test = async () => {
   console.log("findId :", findProduct);
   await manager.upDateProduct(3, "precio", 1500);
   const get2 = await manager.getProducts();
-  console.log("segunda consulta productos", get2);
+  console.log("segunda consulta de productos", get2);
   const get3 = await manager.getCart();
-  console.log("tercera consulta carrito", get3);
+  console.log("tercera consulta de productos", get3);
   await manager.addProductToCart(2);
   await manager.addProductToCart(3);
   await manager.addProductToCart(3);
   await manager.addProductToCart(3);
   const get4 = await manager.getCart();
-  console.log("cuarta consulta carrito", get4);
+  console.log("cuarta consulta de productos", get4);
   await manager.deleteProduct(3);
   await manager.deleteProduct(2);
   const get5 = await manager.getCart();
