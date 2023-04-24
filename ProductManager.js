@@ -79,7 +79,7 @@ class ProductManager {
       console.log(error);
     }
   }
-  // cart functions
+  // funciones del carrito
 
   async getCart() {
     try {
