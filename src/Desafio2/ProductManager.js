@@ -5,6 +5,11 @@ export default class ProductManager {
     this.pathCart = "./productsCart.json";
     this.newId = 0;
   }
+
+
+  
+
+
   async getProducts() {
     try {
       if (fs.existsSync(this.pathProducts)) {
@@ -50,7 +55,7 @@ export default class ProductManager {
     }
   }
   generateId() {
-    return ++this.newId;
+    return this.newId++;
   }
   async upDateProduct(id, upDateKey, upDateValue) {
     try {
