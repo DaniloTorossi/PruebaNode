@@ -171,9 +171,9 @@ export default class ProductManager {
 
 
 
-  async findProductById(searchedId, get) {
+  async findProductById(searchedId) {
     try {
-      const products = await get;
+      const products = await this.getProducts();
       const find = products.find(
         (prodIterated) => prodIterated.id === searchedId
       );
