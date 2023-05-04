@@ -6,8 +6,16 @@ export default class ProductManager {
     this.newId = 0;
   }
 
+ getMaxId = async () => {
+    let maxId = 0;
+    const products = await getProducts();
+    products.map((prod) => {
+      if (prod.id > maxId) maxId = prod.id;
+    });
+    return maxId;
+  };
 
-  
+
 
 
   async getProducts() {
@@ -148,6 +156,21 @@ export default class ProductManager {
       await fs.promises.writeFile(this.pathCart, JSON.stringify(productsCart));
     }
   }
+
+  async deleteAllProducts(){
+    try {
+        if(fs.existsSync(this.path)){
+            await fs.promises.unlink(this.path)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
   async findProductById(searchedId, get) {
     try {
       const products = await get;
