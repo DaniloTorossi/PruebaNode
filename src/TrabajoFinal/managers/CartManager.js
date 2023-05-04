@@ -1,4 +1,5 @@
-import ProductManager from "./ProductManager";
+import ProductManager from "./ProductManager.js";
+import Path from '../path.js'
 const path = Path;
 const manager = new ProductManager();
 
