@@ -8,7 +8,7 @@ export default class ProductManager {
 
  getMaxId = async () => {
     let maxId = 0;
-    const products = await getProducts();
+    const products = await this.getProducts();
     products.map((prod) => {
       if (prod.id > maxId) maxId = prod.id;
     });
