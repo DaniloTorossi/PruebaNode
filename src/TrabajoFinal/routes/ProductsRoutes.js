@@ -21,8 +21,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-try {
-} catch (error) {}
+
 
 router.get("/", async (req, res) => {
   try {
