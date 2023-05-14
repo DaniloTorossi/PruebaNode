@@ -6,14 +6,14 @@ const manager = new ProductManager();
 
 router.get("/", async (req, res) => {
   try {
-    const products = await this.getProducts();
+    const productsFile = await manager.getProducts();
     const limit = req.query.limit ? parseInt(req.query.limit) : 0;
     if (limit > 0) {
-      const limitedProducts = products.slice(0, limit);
-      const remainingProducts = products.slice(limit);
+      const limitedProducts = productsFile.slice(0, limit);
+      const remainingProducts = productsFile.slice(limit);
       res.status(200).json({ limitedProducts, remainingProducts });
     } else {
-      res.status(200).json(products);
+      res.status(200).json(productsFile);
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -40,8 +40,8 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const product = req.body;
-    const newProduct = await manager.createProducts(product);
+    const productsFile = req.body;
+    const newProduct = await manager.createProducts(productsFile);
     res.status(200).json(newProduct);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
   try {
     const { key, value } = req.body;
     const { id } = req.params;
-    const productFound = await productsManager.findProductByIdProducts(id);
+    const productFound = await manager.findProductByIdProducts(id);
     if (productFound) {
       await productsManager.updateProduct(id, key, value);
       res.send(`product updated successfully!`);

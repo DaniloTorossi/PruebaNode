@@ -5,14 +5,14 @@ const productsManager = new ProductManager();
 
 router.get('/', async(req, res) => {
     try {
-        const products = await productsManager.getProducts();
+        const productsFile = await productsManager.getProducts();
         const limit = req.query.limit ? parseInt(req.query.limit) : 0;
         if (limit > 0) {
-          const limitedProducts = products.slice(0, limit);
-          const remainingProducts = products.slice(limit);
-          res.status(200).json({ limitedProducts, remainingProducts });
+          const limitedProducts = productsFile.slice(0, limit);
+          const remainingProducts = productsFile.slice(limit);
+          res.status(200).render({ limitedProducts, remainingProducts });
         } else {
-          res.status(200).render('products', {products});
+          res.status(200).render('products', {productsFile});
         }
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -23,14 +23,14 @@ router.get('/', async(req, res) => {
  router.get('/socket', async(req, res)=>{
     try {
         try {
-            const products = await productsManager.getProducts()
+            const productsFile = await productsManager.getProducts()
             const limit = req.query.limit ? parseInt(req.query.limit) : undefined;
             if(limit){
-                const limitedProducts = products.slice(0, limit);
-                const remainingProducts = products.slice(limit); 
+                const limitedProducts = productsFile.slice(0, limit);
+                const remainingProducts = productsFile.slice(limit); 
                 res.status(200).render('websockets',{limitedProducts, remainingProducts});
             } else{
-                res.status(200).render('websockets', {products});
+                res.status(200).render('websockets', {productsFile});
             };
         } catch (error) {
             res.status(404).json({ message: error.message });
